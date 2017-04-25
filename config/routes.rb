@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :tasks, only: [:create, :update, :destroy, :index]
+  resources :tasks, only: [:create, :update, :destroy, :index, :edit]
   devise_for :users
   
   root 'tasks#index'

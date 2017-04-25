@@ -15,6 +15,18 @@ myApp.factory('Task', ['$resource', function($resource){
  });
 }]);
 
+myApp.controller("TaskUpdateCtr", ['$scope', '$resource', 'Task', '$location', '$routeParams', function($scope, $resource, Task, $location, $routeParams) {
+   $scope.task = Task.get({id: $routeParams.id})
+   $scope.update = function(){
+     if ($scope.taskForm.$valid){
+       Task.update($scope.task,function(){
+         $location.path('/');
+       }, function(error) {
+         console.log(error)
+      });
+     }
+   };
+}]);
 
 myApp.controller("TaskListCtr", ['$scope', '$http', '$resource', 'Tasks', 'Task', '$location', function($scope, $http, $resource, Tasks, Task, $location) {
   $scope.tasks = Tasks.query();
@@ -51,6 +63,10 @@ myApp.config([
  $routeProvider.when('/tasks', {
     templateUrl: '/templates/tasks/index.html',
     controller: 'TaskListCtr'
+ });
+ $routeProvider.when('/tasks/:id/edit', {
+    templateUrl: '/templates/tasks/edit.html',
+    controller: 'TaskUpdateCtr'
  });
  $routeProvider.otherwise({
    redirectTo: '/tasks'

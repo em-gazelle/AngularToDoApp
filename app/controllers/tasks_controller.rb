@@ -1,12 +1,15 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_task, only: [:update, :destroy]
+  before_action :set_task, only: [:update, :destroy, :edit]
 
   # GET /tasks
   # GET /tasks.json
   def index
     @tasks = current_user.tasks
     # @tasks = Task.all
+  end
+
+  def edit
   end
 
   # POST /tasks
@@ -28,15 +31,12 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
-    respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @task }
+        redirect_to tasks_url
       else
         format.html { render :edit }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # DELETE /tasks/1
