@@ -35,11 +35,11 @@
             <tr>
                 <th>Title</th>
                 <th>Description</th>
-                <th>Completed</th>
+                <th>Completed?</th>
                 <th></th>
             </tr>
             <tr ng-hide="tasks.length" >
-                <td colspan="5">No tasks found, Please create one.</td>
+                <td colspan="5">I'm sure there must be something you have to do...</td>
             </tr>
             <tr ng-show="tasks.length" ng-repeat="task in tasks">
                 <td>{{task.title}}</td>
