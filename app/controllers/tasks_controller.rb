@@ -42,14 +42,10 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
-    if @task.completed
-      opposite = false
-    else
-      opposite = true
-    end
+    opposite = !@task.completed
 
     respond_to do |format|
-      if @task.update( {completed: opposite} )
+      if @task.update( {completed: opposite})
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
