@@ -37,8 +37,8 @@ myApp.controller("TaskListCtr", ['$scope', '$http', '$resource', 'Tasks', 'Task'
     });
   }
  }
-	$scope.updateTask = function(taskId) {
-		Task.update({ id: taskId }, function(){
+	$scope.updateTask = function(taskId, completed) {
+		Task.update({ id: taskId, completed: completed }, function(){
 			$scope.tasks = Tasks.query();
 		});
 	};

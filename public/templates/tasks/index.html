@@ -45,7 +45,7 @@
                 <td>{{task.title}}</td>
                 <td>{{task.description}}</td>
                 <td>
-                    <input type="checkbox" ng-click='updateTask(task.id)' ng-model='task.completed' >
+                    <input type="checkbox" ng-click='updateTask(task.id, task.completed)' ng-model='task.completed' >
                 </td>
                 <td>
                     <a href="" ng-click="deleteTask(task.id)">&#10006;</a>
