@@ -3,11 +3,34 @@
     <div class="col-md-12">
 
 
+    <div class="col-md-10">
+        <form class="tab-pane active form-horizontal" id="first" name="taskForm" novalidate ng-submit="createTask()">
+            <h3 class="block">Add new task</h3>
 
-        <form ng-submit="createTask()">
-            <input type="text" ng-model="task" size="50" placeholder="Add New">
-            <input type="submit" value="Add New">
+                <div class="form-group" ng-class="{'has-error' : submitted && taskForm.title.$invalid}">
+                    <label class="control-label col-md-3">Title <span class="required">* </span> </label>
+                    <div class="col-md-4">
+                        <input type="text" name="name" class="form-control" ng-model="task.title" required placeholder="name"/>
+                    </div>
+                    <p ng-show=" submitted && taskForm.title.$invalid" class="help-block">Title is required.</p>
+                </div>
+                <div class="form-group" ng-class="{'has-error' : submitted && taskForm.description.$invalid}">
+                    <label class="control-label col-md-3">Description <span class="required">* </span> </label>
+                    <div class="col-md-4">
+                        <input type="text" name="description" class="form-control" ng-model="task.description" required placeholder="description"/>
+                    </div>
+                    <p ng-show=" submitted && taskForm.description.$invalid" class="help-block">Description is required.</p>
+                </div>
+
+                <div class="form-group">
+                    <div class="pull-left">
+                        <button type="submit" class="btn btn-primary" ng-click="submitted=true">Submit</button>
+                    </div>
+                </div>
+
         </form>
+    </div>
+
 
 
 
