@@ -36,7 +36,7 @@
                 <th>Title</th>
                 <th>Description</th>
                 <th>Completed?</th>
-                <th></th>
+                <th>Remove</th>
             </tr>
             <tr ng-hide="tasks.length" >
                 <td colspan="5">I'm sure there must be something you have to do...</td>
@@ -48,7 +48,7 @@
                     <input type="checkbox" ng-click='updateTask(task.id)' ng-model='task.completed' >
                 </td>
                 <td>
-                    <a href="" ng-click="deleteTask(task.id)">Remove</a>
+                    <a href="" ng-click="deleteTask(task.id)">&#10006;</a>
                 </td>
             </tr>
         </table>
