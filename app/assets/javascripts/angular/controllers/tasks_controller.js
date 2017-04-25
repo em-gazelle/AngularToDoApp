@@ -10,7 +10,6 @@ myApp.factory('Tasks', ['$resource',function($resource){
  
 myApp.factory('Task', ['$resource', function($resource){
  return $resource('/tasks/:id.json', {}, {
- show: { method: 'GET' },
  update: { method: 'PUT', params: {id: '@id'} },
  delete: { method: 'DELETE', params: {id: '@id'} }
  });
@@ -24,13 +23,11 @@ myApp.controller("TaskListCtr", ['$scope', '$http', '$resource', 'Tasks', 'Task'
     if (confirm("Are you sure you want to delete this task?")){
       Task.delete({ id: taskId }, function(){
         $scope.tasks = Tasks.query();   // after delete task get tasks collection.
-        $location.path('/');
       });
     }
   };
 
   $scope.createTask = function () {
-  	debugger;
     if ($scope.taskForm.$valid){
       Tasks.create({task: $scope.task}, function(){
 	    $scope.tasks = Tasks.query();   // after delete task get tasks collection.      
@@ -40,18 +37,11 @@ myApp.controller("TaskListCtr", ['$scope', '$http', '$resource', 'Tasks', 'Task'
     });
   }
  }
-
-   // $scope.task = Task.get({id: $routeParams.id})
-   // $scope.update = function(){
-   //   if ($scope.taskForm.$valid){
-   //     Task.update($scope.task,function(){
-   //      $scope.tasks = Tasks.query();   // after delete task get tasks collection.
-   //       $location.path('/');
-   //     }, function(error) {
-   //       console.log(error)
-   //    });
-   //   }
-   // };
+	$scope.updateTask = function(taskId) {
+		Task.update({ id: taskId }, function(){
+			$scope.tasks = Tasks.query();
+		});
+	};
 }]);
 
 
