@@ -1,0 +1,35 @@
+<br/>
+<div class="row">
+    <div class="col-md-12">
+
+
+
+        <form ng-submit="createTask()">
+            <input type="text" ng-model="task" size="50" placeholder="Add New">
+            <input type="submit" value="Add New">
+        </form>
+
+
+
+        <h3 class="block">Tasks</h3>
+        <table class="table table-striped">
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Completed</th>
+                <th></th>
+            </tr>
+            <tr ng-hide="tasks.length" >
+                <td colspan="5">No tasks found, Please create one.</td>
+            </tr>
+            <tr ng-show="tasks.length" ng-repeat="task in tasks">
+                <td>{{task.title}}</td>
+                <td>{{task.description}}</td>
+                <td>{{task.completed}}</td>
+                <td>
+                    <a href="/tasks/{{task.id}}/edit">Edit</a> | <a href="" ng-click="deleteTask(task.id)">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
